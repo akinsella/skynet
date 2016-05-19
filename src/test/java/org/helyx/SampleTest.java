@@ -5,7 +5,7 @@ import org.junit.Test;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
-public class BasicAIGameTest {
+public class SampleTest {
 
     @Test
     public void should_validate_sample_test() throws Exception {
