@@ -1,13 +1,11 @@
 package org.helyx;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import static org.helyx.GameEngine.play;
+
+class App {
+
+    public static void main(String args[]) {
+        play(new BasicAI(), System.in);
     }
+
 }
