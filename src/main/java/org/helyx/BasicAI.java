@@ -7,7 +7,7 @@ public class BasicAI implements AI {
         for (Gateway g : gs.getGateways()) {
             int exitIndice = g.getExitIndice();
 
-            for (Link link : gs.getUncutList()) {
+            for (Link link : gs.getUncutLinks()) {
                 if (link.getN1() == exitIndice || link.getN2() == exitIndice) {
                     return link;
                 }

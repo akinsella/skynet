@@ -20,7 +20,7 @@ public class ShortestPathFinderAI implements AI {
 
             System.err.println("--- Gateway: " + g.getExitIndice() + ", skynetAgentIndice: " + skynetAgentIndice);
 
-            List<Path> gwFoundPaths = searchShorterPath(skynetAgentIndice, exitIndice, gs.getUncutList());
+            List<Path> gwFoundPaths = searchShorterPath(skynetAgentIndice, exitIndice, gs.getUncutLinks());
 
             System.err.println("Shorter Path: " + gwFoundPaths);
 

@@ -72,7 +72,7 @@ public class GameState {
         return unmodifiableList(cutLinks);
     }
 
-    public List<Link> getUncutList() {
+    public List<Link> getUncutLinks() {
         return unmodifiableList(uncutLinks);
     }
 
