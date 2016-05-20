@@ -19,7 +19,7 @@ public class GraphWalkerTest {
 
     @Test
     public void should_walk_through_graph() {
-        List<Path> foundPaths = new SmartPathAI().searchShorterPath(21, 0, readLinks(input));
+        List<Path> foundPaths = new ShortestPathFinderAI().searchShorterPath(21, 0, readLinks(input));
 
         System.err.println("Path: " + foundPaths);
     }
