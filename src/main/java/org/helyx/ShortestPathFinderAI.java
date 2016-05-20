@@ -58,7 +58,6 @@ public class ShortestPathFinderAI implements AI {
         List<Link> links = pLinks.stream()
                 .map(link -> Arrays.asList(link, new Link(link.getN2(), link.getN1())))
                 .flatMap(List::stream)
-                // Filter origin and dest
                 .collect(Collectors.toList());
 
 //        System.err.println("Links sorted:" + links);
