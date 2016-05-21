@@ -1,11 +1,16 @@
 package org.helyx;
 
+import org.helyx.game.ai.basic.BasicAI;
+import org.helyx.graph.Graph;
+import org.helyx.graph.Link;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
-import static org.helyx.GameEngine.play;
+import static org.helyx.TestUtils.readLinks;
+import static org.helyx.game.GameEngine.play;
 import static org.helyx.IOUtils.toInputStream;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class MultiPathTest {
 
@@ -14,20 +19,21 @@ public class MultiPathTest {
 
         // Given
         String content =
-                "4 4 1\n" +
-                "1 3\n" +
-                "2 3\n" +
-                "0 1\n" +
-                "0 2\n" +
-                "3\n" +
-                "0\n" +
-                "2\n";
+            "4 4 1\n" +
+            "1 3\n" +
+            "2 3\n" +
+            "0 1\n" +
+            "0 2\n" +
+            "3\n" +
+            "0\n" +
+            "2\n";
 
         // When
-        GameState gs = play(new BasicAI(), toInputStream(content));
+        Graph g = play(new BasicAI(), toInputStream(content));
 
         // Then
-        assertEquals(asList(new Link(1, 3), new Link(2, 3)), gs.getCutLinks());
+        readLinks("1 3 2 3").stream()
+                .forEach(link -> assertFalse(g.contains(link)));
     }
 
 }

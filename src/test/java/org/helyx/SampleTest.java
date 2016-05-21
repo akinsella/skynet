@@ -1,9 +1,17 @@
 package org.helyx;
 
+import org.helyx.game.ai.basic.BasicAI;
+import org.helyx.game.GameEngine;
+import org.helyx.graph.Graph;
+import org.helyx.graph.Link;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
+import static org.helyx.IOUtils.toInputStream;
+import static org.helyx.TestUtils.readLinks;
+import static org.helyx.game.GameEngine.play;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class SampleTest {
 
@@ -22,10 +30,11 @@ public class SampleTest {
             "2\n";
 
         // When
-        GameState gs = GameEngine.play(new BasicAI(), IOUtils.toInputStream(content));
+        Graph g = play(new BasicAI(), toInputStream(content));
 
         // Then
-        assertEquals(asList(new Link(1, 3), new Link(2, 3)), gs.getCutLinks());
+        readLinks("1 3 2 3").stream()
+                .forEach(link -> assertFalse(g.contains(link)));
     }
 
 }
