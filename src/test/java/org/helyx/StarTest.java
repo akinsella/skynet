@@ -1,11 +1,17 @@
 package org.helyx;
 
+import org.helyx.game.ai.shortpathfinder.ShortestPathFinderAI;
+import org.helyx.graph.Graph;
+import org.helyx.graph.Link;
 import org.junit.Test;
 
-import static org.helyx.GameEngine.play;
+import java.util.List;
+
+import static org.helyx.game.GameEngine.play;
 import static org.helyx.IOUtils.toInputStream;
 import static org.helyx.TestUtils.readLinks;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class StarTest {
 
@@ -49,16 +55,16 @@ public class StarTest {
                 "9\n" +
                 "8\n" +
                 "7\n" +
-                "6\n"
-                ;
+                "6\n";
 
         // When
-        GameState gs = play(new ShortestPathFinderAI(), toInputStream(content));
+        Graph g = play(new ShortestPathFinderAI(), toInputStream(content));
 
         // Then
-        assertEquals(readLinks(
-                "11 6 5 0 4 0 3 0 2 0 1 0 10 0 9 0 8 0 7 0 6 0"
-        ), gs.getCutLinks());
+        readLinks("11 6 5 0 4 0 3 0 2 0 1 0 10 0 9 0 8 0 7 0 6 0").stream()
+                .forEach(link -> {
+                    assertFalse(g.contains(link));
+                });
     }
 
 }

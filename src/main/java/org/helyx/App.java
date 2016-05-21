@@ -1,11 +1,13 @@
 package org.helyx;
 
-import static org.helyx.GameEngine.play;
+import org.helyx.game.ai.shortpathfinder.ShortestPathFinderAI;
+
+import static org.helyx.game.GameEngine.play;
 
 class App {
 
     public static void main(String args[]) {
-        play(new BasicAI(), System.in);
+        play(new ShortestPathFinderAI(), System.in);
     }
 
 }

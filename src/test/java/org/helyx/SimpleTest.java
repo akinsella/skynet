@@ -1,11 +1,18 @@
 package org.helyx;
 
+import org.helyx.game.ai.basic.BasicAI;
+import org.helyx.graph.Graph;
+import org.helyx.graph.Link;
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static java.util.Arrays.asList;
-import static org.helyx.GameEngine.play;
+import static java.util.Collections.singletonList;
+import static org.helyx.game.GameEngine.play;
 import static org.helyx.IOUtils.toInputStream;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class SimpleTest {
 
@@ -14,17 +21,17 @@ public class SimpleTest {
 
         // Given
         String content =
-                "3 2 1\n" +
-                        "0 1\n" +
-                        "1 2\n" +
-                        "2\n" +
-                        "1\n";
+            "3 2 1\n" +
+            "0 1\n" +
+            "1 2\n" +
+            "2\n" +
+            "1\n";
 
         // When
-        GameState gs = play(new BasicAI(), toInputStream(content));
+        Graph g = play(new BasicAI(), toInputStream(content));
 
         // Then
-        assertEquals(asList(new Link(1, 2)), gs.getCutLinks());
+        assertFalse(g.contains(new Link(1, 2)));
     }
 
 }
