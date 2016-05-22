@@ -27,7 +27,19 @@ public class Link {
     }
 
     public boolean isConnectedTo(Link link) {
-        return n1.equals(link.getN2());
+        return isConnectedTo(link.getN2());
+    }
+
+    public boolean isConnectedTo(Node node) {
+        return n1.equals(node);
+    }
+
+    public int getWeight() {
+        return n1.getWeight() + n2.getWeight();
+    }
+
+    public boolean contains(Node n) {
+        return n1.equals(n) || n2.equals(n);
     }
 
     @Override
@@ -51,7 +63,7 @@ public class Link {
 
     @Override
     public String toString() {
-        return "{" + n1.getIndex() + " " + n2.getIndex() + '}';
+        return "{n1:" + n1.getIndex() + "(" + n1.getWeight() + ") n2:" + n2.getIndex() + "(" + n2.getWeight() + ") - w:" + getWeight() + "}";
     }
 
 }

@@ -1,16 +1,12 @@
 package org.helyx;
 
-import org.helyx.game.ai.shortpathfinder.ShortestPathFinderAI;
+import org.helyx.game.ai.shortestpathfinder.ShortestPathFinderAI;
 import org.helyx.graph.Graph;
-import org.helyx.graph.Link;
 import org.junit.Test;
 
-import java.util.List;
-
+import static org.helyx.utils.IOUtils.toInputStream;
+import static org.helyx.utils.TestUtils.readLinks;
 import static org.helyx.game.GameEngine.play;
-import static org.helyx.IOUtils.toInputStream;
-import static org.helyx.TestUtils.readLinks;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class TripleStarsTest {
@@ -111,13 +107,22 @@ public class TripleStarsTest {
             "33\n" +
             "34\n" +
             "35\n" +
-            "36\n" +
+            "23\n" +
             "22\n" +
             "21\n" +
             "29\n" +
             "30\n" +
             "31\n" +
-            "32\n"
+            "32\n" +
+            "33\n" +
+            "34\n" +
+            "35\n" +
+            "2\n" +
+            "37\n" +
+            "23\n" +
+            "22\n" +
+            "21\n" +
+            "22\n"
                 ;
 
         // When
@@ -125,7 +130,7 @@ public class TripleStarsTest {
 
         // Then
         readLinks(
-                "37 35 35 28 2 0 3 0 4 0 33 28 34 28 35 23 36 28 22 18 21 18 29 28 30 28 31 28 32 28"
+                "37 1 35 28 2 0 3 0 4 0 33 28 34 28 35 36 23 18 22 18 21 18 29 28 30 28 31 28 32 28 4 5 34 3 23 24 2 1 37 24 22 36 21 20 21 29 32 31"
         ).stream()
                 .forEach(link -> assertFalse(g.contains(link)));
 

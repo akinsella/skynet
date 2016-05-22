@@ -5,8 +5,9 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.helyx.TestUtils.*;
-import static org.helyx.game.ai.shortpathfinder.ShortestPathFinder.findShortestPath;
+import static java.util.Collections.singletonList;
+import static org.helyx.utils.TestUtils.*;
+import static org.helyx.game.ai.shortestpathfinder.ShortestPathFinder.findShortestPaths;
 import static org.junit.Assert.assertEquals;
 
 public class ShortestPathFinderTest {
@@ -20,9 +21,9 @@ public class ShortestPathFinderTest {
 
     @Test
     public void should_walk_through_graph() {
-        List<Path> pathsToCut = findShortestPath(readGraph(input).replaceNodes(readExitNodes("0 18 28")), 21);
+        List<Path> shortestPaths = findShortestPaths(readGraph(input).replaceNodes(readExitNodes("0 18 28")), 21);
 
-        assertEquals(readPath("21 18"), pathsToCut.get(0));
+        assertEquals(singletonList(readPath("21 18")), shortestPaths);
     }
 
 }

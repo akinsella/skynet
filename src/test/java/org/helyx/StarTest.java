@@ -1,16 +1,12 @@
 package org.helyx;
 
-import org.helyx.game.ai.shortpathfinder.ShortestPathFinderAI;
+import org.helyx.game.ai.shortestpathfinder.ShortestPathFinderAI;
 import org.helyx.graph.Graph;
-import org.helyx.graph.Link;
 import org.junit.Test;
 
-import java.util.List;
-
+import static org.helyx.utils.IOUtils.toInputStream;
+import static org.helyx.utils.TestUtils.readLinks;
 import static org.helyx.game.GameEngine.play;
-import static org.helyx.IOUtils.toInputStream;
-import static org.helyx.TestUtils.readLinks;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class StarTest {

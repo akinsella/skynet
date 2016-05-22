@@ -5,13 +5,8 @@ import org.helyx.graph.Graph;
 import org.helyx.graph.Link;
 import org.junit.Test;
 
-import java.util.Collections;
-
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
+import static org.helyx.utils.IOUtils.toInputStream;
 import static org.helyx.game.GameEngine.play;
-import static org.helyx.IOUtils.toInputStream;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class SimpleTest {

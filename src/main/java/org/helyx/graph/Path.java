@@ -1,11 +1,9 @@
 package org.helyx.graph;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Collections.singleton;
 import static java.util.Collections.singletonList;
 import static java.util.Collections.unmodifiableList;
 
@@ -13,8 +11,8 @@ public class Path {
 
     private List<Link> links = new ArrayList<>();
 
-    public List<Link> getLinks() {
-        return unmodifiableList(links);
+    public Path() {
+        super();
     }
 
     public Path(Link link) {
@@ -24,6 +22,10 @@ public class Path {
     public Path(List<Link> links) {
         super();
         this.links = new ArrayList<>(links);
+    }
+
+    public List<Link> getLinks() {
+        return unmodifiableList(links);
     }
 
     public Path push(Link link) {
@@ -56,6 +58,10 @@ public class Path {
 
     public int size() {
         return links.size();
+    }
+
+    public Optional<Node> lastNode() {
+        return last().isPresent() ? Optional.of(last().get().n2) : Optional.empty();
     }
 
     @Override

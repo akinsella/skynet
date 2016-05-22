@@ -1,4 +1,4 @@
-package org.helyx;
+package org.helyx.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

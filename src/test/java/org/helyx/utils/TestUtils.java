@@ -1,6 +1,5 @@
-package org.helyx;
+package org.helyx.utils;
 
-import com.sun.tools.javah.Util;
 import org.helyx.game.graph.ExitNode;
 import org.helyx.graph.Graph;
 import org.helyx.graph.Link;

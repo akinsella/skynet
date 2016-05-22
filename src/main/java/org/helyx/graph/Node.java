@@ -3,13 +3,27 @@ package org.helyx.graph;
 public class Node {
 
     private int index;
+    private int weight = 1;
 
     public Node(int index) {
         this.index = index;
     }
 
+    public Node(int index, int weight) {
+        this.index = index;
+        this.weight = weight;
+    }
+
+    public Node weighted(int weight) {
+        return new Node(index, weight);
+    }
+
     public int getIndex() {
         return index;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 
     /**
@@ -25,7 +39,6 @@ public class Node {
         Node node = (Node) o;
 
         return index == node.index;
-
     }
 
     @Override
@@ -35,7 +48,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" + index + '}';
+        return "Node{ i:" + index + ", w:" + weight + "}";
     }
 
 }
