@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 
@@ -43,11 +42,15 @@ public class ShortestPathFinder {
 
         while (!paths.isEmpty()) {
 
-            Path path = paths.poll();
+            List<Path> exitPaths =  paths.stream()
+                    .filter(path -> path.last().get().getN2() instanceof ExitNode)
+                    .collect(toList());
 
-            if (path.last().get().getN2() instanceof ExitNode) {
-                return singletonList(path);
+            if (!exitPaths.isEmpty()) {
+                return exitPaths;
             }
+
+            Path path = paths.poll();
 
             List<Path> candidatePaths = concat(graph.getLinks().stream(), graph.reverseLinks().stream())
                     .filter(link ->

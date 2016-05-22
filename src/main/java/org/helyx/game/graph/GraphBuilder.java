@@ -4,6 +4,7 @@ import org.helyx.graph.Graph;
 import org.helyx.graph.Link;
 import org.helyx.graph.Node;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,7 +35,19 @@ public class GraphBuilder {
         }).collect(toList());
 
 
-        return new Graph(links).replaceNodes(exitNodes);
+        Graph graph = new Graph(links).replaceNodes(exitNodes);
+
+        graph.getLinks().stream()
+                .map(l -> Arrays.asList(l.getN1(), l.getN2()))
+                .flatMap(List::stream)
+                .forEach(n ->
+                    n.setWeight( graph.getLinks().stream()
+                            .mapToInt(l -> l.getN1().equals(n) || l.getN2().equals(n) ? 1 : 0)
+                            .reduce(0, (acc, weight) -> acc + weight)
+                    )
+                );
+
+        return graph;
     }
 
 }

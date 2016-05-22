@@ -30,6 +30,10 @@ public class Link {
         return n1.equals(link.getN2());
     }
 
+    public int getWeight() {
+        return n1.getWeight() + n2.getWeight();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,7 +55,7 @@ public class Link {
 
     @Override
     public String toString() {
-        return "{" + n1.getIndex() + " " + n2.getIndex() + '}';
+        return "{" + n1.getIndex() + "(" + n1.getWeight() + ") " + n2.getIndex() + "(" + n2.getWeight() + ") (" + getWeight() + ")}";
     }
 
 }
