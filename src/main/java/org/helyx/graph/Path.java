@@ -45,6 +45,19 @@ public class Path {
         return links.stream().anyMatch(link -> node.equals(link.n1) || node.equals(link.n2));
     }
 
+    public boolean isEmpty() {
+        return links.isEmpty();
+    }
+
+
+    public boolean isNotEmpty() {
+        return !isEmpty();
+    }
+
+    public int size() {
+        return links.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

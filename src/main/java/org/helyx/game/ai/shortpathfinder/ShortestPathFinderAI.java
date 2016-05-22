@@ -5,7 +5,10 @@ import org.helyx.graph.Graph;
 import org.helyx.graph.Link;
 import org.helyx.graph.Path;
 
+import java.util.List;
+
 import static java.lang.System.currentTimeMillis;
+import static java.util.stream.Collectors.toList;
 import static org.helyx.game.ai.shortpathfinder.ShortestPathFinder.findShortestPath;
 
 public class ShortestPathFinderAI implements AI {
@@ -21,12 +24,16 @@ public class ShortestPathFinderAI implements AI {
         System.err.println(" Skynet Agent Indice: " + skyNetAgentIndice);
         System.err.println("----------------------------------------------------------------");
 
-        Path foundPath = findShortestPath(g, skyNetAgentIndice).orElseThrow(NoPathFoundException::new);
+        List<Path> foundPaths = findShortestPath(g, skyNetAgentIndice).stream()
+                .filter(Path::isNotEmpty)
+                .sorted((p1, p2) -> Integer.valueOf(p1.size()).compareTo(p2.size()))
+                .collect(toList());
 
-        Link firstLink = foundPath
-                .first().orElseThrow(EmptyPathException::new).getN1().getIndex() == skyNetAgentIndice ?
-                foundPath.first().get() :
-                foundPath.last().get();
+        if (foundPaths.isEmpty()) {
+            throw new NoPathFoundException();
+        }
+
+        Link firstLink = foundPaths.get(0).first().get();
 
         System.err.println("Duration: " + Math.max(0, currentTimeMillis() - start) + " ms");
         System.err.println("First Link of shortest path found:" + firstLink);
@@ -34,7 +41,5 @@ public class ShortestPathFinderAI implements AI {
 
         return firstLink;
     }
-
-    class EmptyPathException extends RuntimeException { }
 
 }

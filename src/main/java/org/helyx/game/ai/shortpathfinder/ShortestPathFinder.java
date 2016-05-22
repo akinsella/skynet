@@ -6,8 +6,10 @@ import org.helyx.graph.Path;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
+import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 
@@ -23,43 +25,42 @@ public class ShortestPathFinder {
         super();
     }
 
-    public static Optional<Path> findShortestPath(Graph graph, int orig) {
+    public static List<Path> findShortestPath(Graph graph, int orig) {
 
         List<Path> initialPaths = concat(graph.getLinks().stream(), graph.reverseLinks().stream())
                 .filter(link -> link.getN1().getIndex() == orig)
                 .map(Path::new)
                 .collect(toList());
 
-        return new ShortestPathFinder().visitPaths(graph, initialPaths);
+        Queue<Path> queue = new LinkedBlockingQueue<>(initialPaths);
+
+        return new ShortestPathFinder().visitPaths(graph, queue);
     }
 
-    private Optional<Path> visitPaths(Graph graph, List<Path> paths) {
+    private List<Path> visitPaths(Graph graph, Queue<Path> paths) {
 
-        if (paths.isEmpty()) {
-            return Optional.empty();
-        }
+        List<Path> foundPaths = new ArrayList<>();
 
-        List<Path> pathsToAdd = new ArrayList<>();
+        while (!paths.isEmpty()) {
 
-        for (Path path : paths) {
+            Path path = paths.poll();
 
             if (path.last().get().getN2() instanceof ExitNode) {
-                return Optional.of(path);
+                return singletonList(path);
             }
 
             List<Path> candidatePaths = concat(graph.getLinks().stream(), graph.reverseLinks().stream())
                     .filter(link ->
-                        link.isConnectedTo(path.last().get()) &&
-                        !path.contains(link.getN2())
+                            link.isConnectedTo(path.last().get()) &&
+                                    !path.contains(link.getN2())
                     )
                     .map(path::push)
                     .collect(toList());
 
-
-            pathsToAdd.addAll(candidatePaths);
+            paths.addAll(candidatePaths);
         }
 
-        return visitPaths(graph, pathsToAdd);
+        return foundPaths;
     }
 
 }

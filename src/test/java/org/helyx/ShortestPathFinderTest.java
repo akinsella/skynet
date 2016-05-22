@@ -1,10 +1,9 @@
 package org.helyx;
 
-import org.helyx.game.ai.AI.NoPathFoundException;
 import org.helyx.graph.Path;
 import org.junit.Test;
 
-import java.util.Optional;
+import java.util.List;
 
 import static org.helyx.TestUtils.*;
 import static org.helyx.game.ai.shortpathfinder.ShortestPathFinder.findShortestPath;
@@ -21,9 +20,9 @@ public class ShortestPathFinderTest {
 
     @Test
     public void should_walk_through_graph() {
-        Optional<Path> pathToCut = findShortestPath(readGraph(input).replaceNodes(readExitNodes("0 18 28")), 21);
+        List<Path> pathsToCut = findShortestPath(readGraph(input).replaceNodes(readExitNodes("0 18 28")), 21);
 
-        assertEquals(readPath("21 18"), pathToCut.orElseThrow(NoPathFoundException::new));
+        assertEquals(readPath("21 18"), pathsToCut.get(0));
     }
 
 }
