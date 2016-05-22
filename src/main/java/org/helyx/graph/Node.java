@@ -8,9 +8,14 @@ public class Node {
     public Node(int index) {
         this.index = index;
     }
+
     public Node(int index, int weight) {
         this.index = index;
         this.weight = weight;
+    }
+
+    public Node weighted(int weight) {
+        return new Node(index, weight);
     }
 
     public int getIndex() {
@@ -19,10 +24,6 @@ public class Node {
 
     public int getWeight() {
         return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
     }
 
     /**
@@ -38,7 +39,6 @@ public class Node {
         Node node = (Node) o;
 
         return index == node.index;
-
     }
 
     @Override

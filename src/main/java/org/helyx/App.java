@@ -1,6 +1,6 @@
 package org.helyx;
 
-import org.helyx.game.ai.shortpathfinder.ShortestPathFinderAI;
+import org.helyx.game.ai.shortestpathfinder.ShortestPathFinderAI;
 
 import static org.helyx.game.GameEngine.play;
 

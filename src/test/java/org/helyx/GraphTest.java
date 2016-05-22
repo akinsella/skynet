@@ -1,11 +1,16 @@
 package org.helyx;
 
+import org.helyx.game.graph.GraphBuilder;
 import org.helyx.graph.Graph;
 import org.helyx.graph.Link;
+import org.helyx.graph.Node;
 import org.junit.Test;
 
-import static org.helyx.TestUtils.createScanner;
+import static java.util.Arrays.asList;
 import static org.helyx.game.graph.GraphBuilder.buildGraph;
+import static org.helyx.game.graph.GraphBuilder.weightNodeByLinkCount;
+import static org.helyx.utils.TestUtils.createScanner;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class GraphTest {
@@ -35,13 +40,39 @@ public class GraphTest {
 
         Graph graph = buildGraph(createScanner(input));
 
-        Link linkToCut = new Link(28, 35);
+        Link linkToCut = new Link(35, 28);
 
         assertTrue(graph.contains(linkToCut));
 
         graph.cutLink(linkToCut);
 
         assertTrue(!graph.contains(linkToCut));
+    }
+
+    @Test
+    public void should_build_weighted_graph() throws Exception {
+
+        // Given
+        String content =
+                "3 2 1\n" +
+                "0 1\n" +
+                "1 2\n" +
+                "2\n" +
+                "1\n";
+
+        // When
+        Graph g = GraphBuilder.buildGraph(createScanner(content));
+
+        g.computeWeights(weightNodeByLinkCount(g.getLinks()));
+
+        // Then
+        Link l0 = g.getLinks().get(0);
+        assertEquals(1, l0.getN1().getWeight());
+        assertEquals(2, l0.getN2().getWeight());
+
+        Link l1 = g.getLinks().get(1);
+        assertEquals(2, l1.getN1().getWeight());
+        assertEquals(1, l1.getN2().getWeight());
     }
 
 }

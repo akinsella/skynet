@@ -2,14 +2,11 @@ package org.helyx;
 
 import org.helyx.game.ai.basic.BasicAI;
 import org.helyx.graph.Graph;
-import org.helyx.graph.Link;
 import org.junit.Test;
 
-import static java.util.Arrays.asList;
-import static org.helyx.TestUtils.readLinks;
+import static org.helyx.utils.IOUtils.toInputStream;
+import static org.helyx.utils.TestUtils.readLinks;
 import static org.helyx.game.GameEngine.play;
-import static org.helyx.IOUtils.toInputStream;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class MultiPathTest {

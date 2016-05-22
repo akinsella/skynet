@@ -2,7 +2,7 @@ package org.helyx;
 
 import org.junit.Test;
 
-import static org.helyx.TestUtils.readPath;
+import static org.helyx.utils.TestUtils.readPath;
 import static org.junit.Assert.assertEquals;
 
 public class PathTest {
