@@ -1,4 +1,4 @@
-package org.helyx;
+package org.helyx.scenarios;
 
 import org.helyx.game.ai.shortestpathfinder.ShortestPathFinderAI;
 import org.helyx.graph.Graph;

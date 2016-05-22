@@ -1,4 +1,4 @@
-package org.helyx;
+package org.helyx.graph;
 
 import org.helyx.game.graph.ExitNode;
 import org.helyx.graph.Node;

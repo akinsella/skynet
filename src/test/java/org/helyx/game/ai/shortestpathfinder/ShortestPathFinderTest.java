@@ -1,4 +1,4 @@
-package org.helyx;
+package org.helyx.game.ai.shortestpathfinder;
 
 import org.helyx.graph.Path;
 import org.junit.Test;

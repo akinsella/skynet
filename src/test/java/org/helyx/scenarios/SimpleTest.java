@@ -1,4 +1,4 @@
-package org.helyx;
+package org.helyx.scenarios;
 
 import org.helyx.game.ai.basic.BasicAI;
 import org.helyx.graph.Graph;

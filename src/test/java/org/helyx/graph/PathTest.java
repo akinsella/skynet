@@ -1,4 +1,4 @@
-package org.helyx;
+package org.helyx.graph;
 
 import org.junit.Test;
 
